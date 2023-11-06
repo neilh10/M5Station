@@ -20,12 +20,12 @@ test_mode_t mode = GPIO_TEST;
 test_mode_t last_mode = GPIO_TEST;
 time_t reverse_io_lasttime    = 0;
 time_t power_control_lasttime = 0;
-bool port_pin_flag            = 0;
-bool port_power_flag          = 0;
-bool has_imu_flag             = 0;
+bool port_pin_flag            = false;
+bool port_power_flag          = false;
+bool has_imu_flag             = false;
 int rssi                      = 0;
 String ssid;
-uint8_t wifi_scan_flag        = 0;
+uint8_t wifi_scan_flag        = 1;
 uint8_t wifi_scan_num         = 0;
 
 uint8_t port_pin_table[] = {PORTA_SDA_PIN,  PORTA_SCL_PIN,  PORTB1_IO1_PIN,
@@ -137,6 +137,8 @@ void setup() {
                 1,           /* Priority of the task. */
                 NULL);       /* Task handle. */
 
+    Serial.println("\n\n   **** factory 230722-1455 ****\n\n");
+
     if (!M5.Rtc.isEnabled()) {
         Serial.println("RTC not found.");
         canvas.fillSprite(BLACK);
@@ -148,7 +150,7 @@ void setup() {
     }
 
     if (!M5.Imu.begin()) {
-        Serial.println("RTC not found.");
+        Serial.println("Imu not found.");
     } else {
         has_imu_flag = true;
     }

@@ -261,11 +261,11 @@ void rtc_test() {
     canvas.println("Power shutdown...");
     canvas.setCursor(10, 40);
     canvas.setTextColor(TFT_WHITE);
-    canvas.println("Will wake up after   5s :)");
+    canvas.println("Will wake up after   60s :)");
     canvas.pushSprite(0, 0);
     delay(3000);
     M5.Rtc.clearIRQ();
-    M5.Rtc.setAlarmIRQ(5);
+    M5.Rtc.setAlarmIRQ(60);
     delay(10);
     M5.Power.Axp192.powerOff();
 }
